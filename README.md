@@ -8,7 +8,7 @@
 
   我们的数据调取是在这个监听事件里  使用 ajax 
   
-  `
+  
   outerScroller.addEventListener('touchend',function(){
      ajax({
        url:'xxxxxxxx',
@@ -19,4 +19,4 @@
 
 
     })
-    `
+    
