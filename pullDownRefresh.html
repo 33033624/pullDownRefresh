@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-    <title>Pull to Refresh</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;" />
+    <title></title>
     <style>
     body{
       background: red;
@@ -16,14 +15,15 @@
         width:100%;
         left:0px;
         overflow: hidden;
+
     }
-    .addNode,.node{
-        pst-style-type: none;
+    .pullnode,.addNode{
+        list-style-type: none;
         height:35px;
         background: #ccc;
-        border-bottom: sopd 1px #fff;
-        text-apgn: left;
-        pne-height: 35px;
+        border-bottom: solid 1px #fff;
+        text-align: left;
+        line-height: 35px;
         padding-left:15px;
     }
     .scroll{
@@ -33,65 +33,65 @@
         left:0px;
         padding:0px;
         top:0px;
+        background: yellow;
+    }
+    .logoText{
+      text-align: center;
     }
     </style>
-    <body>
-      <div class="outerScroller">
-          <div class='scroll'>
-              <p class='node'>1</p>
-              <p class='node'>1</p>
-              <p class='node'>1</p>
-              <p class='node'>1</p>
-              <p class='node'>1</p>
-              <p class='node'>1</p>
-              <p class='node'>1</p>
-              <p class='node'>1</p>
-          </div>
-      </div>
+  </head>
+  <body>
+    <div class="outerScroller">
+      <p class='logoText'>哈哈我是logo</p>
+        <div class = 'scroll'>
+            <p class='pullnode'>1</p>
+            <p class='pullnode'>2</p>
+            <p class='pullnode'>3</p>
+            <p class='pullnode'>4</p>
 
+        </ul>
+    </div>
+  </body>
+</html>
 
-    </body>
-    </html>
-
-    <script>
-       var scroll = document.querySelector('.scroll');
-       var outerScroller = document.querySelector('.outerScroller');
-       var body = document.getElementsByTagName('body')[0];
-       var touchStart = 0;
-       var touchDis = 0;
-       body.addEventpstener('touchstart', function(event) {
-            var touch = event.targetTouches[0];
-            // 把元素放在手指所在的位置
-               touchStart = touch.pageY;
-               console.log(touchStart);
-            }, false);
-       body.addEventpstener('touchmove', function(event) {
-            var touch = event.targetTouches[0];
-            console.log(touch.pageY + 'px');
-            scroll.style.top = scroll.offsetTop + touch.pageY-touchStart + 'px';
-            console.log(scroll.style.top);
-            touchStart = touch.pageY;
-            touchDis = touch.pageY-touchStart;
-            }, false);
-       outerScroller.addEventpstener('touchend', function(event) {
-            touchStart = 0;
-            var top = scroll.offsetTop;
-            console.log(top);
-            if(top>70)refresh();
-            if(top>0){
-                var time = setInterval(function(){
-                  scroll.style.top = scroll.offsetTop -2+'px';
-                  if(scroll.offsetTop<=0)clearInterval(time);
-                },1)
-            }
+<script>
+   var scroll = document.querySelector('.scroll');
+   var outerScroller = document.querySelector('.outerScroller');
+   var touchStart = 0;
+   var touchDis = 0;
+   outerScroller.addEventListener('touchstart', function(event) {
+        var touch = event.targetTouches[0];
+        // 把元素放在手指所在的位置
+           touchStart = touch.pageY;
+           console.log(touchStart);
         }, false);
-       function refresh(){
-        for(var i = 10;i>0;i--)
-            {
-                var node = document.createElement("p");
-                node.class = 'addNode'
-                node.innerHTML = "I'm new";
-                scroll.insertBefore(node,scroll.firstChild);
-            }
-       }
-    </script>
+   outerScroller.addEventListener('touchmove', function(event) {
+        var touch = event.targetTouches[0];
+        console.log(touch.pageY + 'px');
+        scroll.style.top = scroll.offsetTop + touch.pageY-touchStart + 'px';
+        console.log(scroll.style.top);
+        touchStart = touch.pageY;
+        touchDis = touch.pageY-touchStart;
+        }, false);
+   outerScroller.addEventListener('touchend', function(event) {
+        touchStart = 0;
+        var top = scroll.offsetTop;
+        console.log(top);
+        if(top>70)refresh();
+        if(top>0){
+            var time = setInterval(function(){
+              scroll.style.top = scroll.offsetTop -2+'px';
+              if(scroll.offsetTop<=0)clearInterval(time);
+            },1)
+        }
+    }, false);
+   function refresh(){
+    for(var i = 10;i>0;i--)
+        {
+            var node = document.createElement("p");
+            node.className = 'addNode'
+            node.innerHTML = "I'm new";
+            scroll.insertBefore(node,scroll.firstChild);
+        }
+   }
+</script>
